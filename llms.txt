@@ -1,0 +1,30 @@
+# CirclesMiniapps
+
+> SvelteKit host for Circles mini apps: an iframe marketplace (`/miniapps`) plus a wallet bridge (`postMessage`) so embedded apps can request transactions and message signing. Manifest-driven — adding a Garage app is a `static/miniapps.json` entry, not a code change.
+
+## Root
+
+- [README.md](README.md): Repository overview — host behavior, Garage submission guide, manifest fields, wallet bridge
+- [AGENTS.md](AGENTS.md): Agent guide — change protocol, stack summary, WorkSpace context
+
+## Manifest & data
+
+- [static/miniapps.json](static/miniapps.json): Marketplace manifest — the source of truth for which apps are listed
+- [static/app-logos/](static/app-logos/): Square app logos for marketplace tiles
+- [examples/test-account-flag/README.md](examples/test-account-flag/README.md): Example Garage app — test account flag demo (vanilla JS + Vite)
+
+## Source (host)
+
+- [src/lib/IframeHost.svelte](src/lib/IframeHost.svelte): Iframe host component — loads miniapp URLs, wires the wallet bridge
+- [src/lib/iframeHost.ts](src/lib/iframeHost.ts): postMessage bridge logic between host and embedded apps
+- [src/lib/txPolicy.ts](src/lib/txPolicy.ts): Transaction policy — restricted actions, child-safe picker decisions
+- [src/lib/decodeOperation.ts](src/lib/decodeOperation.ts): Operation decoding for wallet requests
+- [src/routes/miniapps/+page.svelte](src/routes/miniapps/+page.svelte): Marketplace grid page (`/miniapps`)
+- [src/routes/playground/+page.svelte](src/routes/playground/+page.svelte): Playground page for testing embedded apps
+- [src/routes/admin/+page.svelte](src/routes/admin/+page.svelte): Admin surface for host management
+
+## Optional
+
+- [.env.example](.env.example): Environment variables template (`VITE_BASE_URL` etc.)
+- [package.json](package.json): npm scripts and dependencies
+- [svelte.config.js](svelte.config.js): SvelteKit configuration
